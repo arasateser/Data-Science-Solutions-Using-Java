@@ -7,18 +7,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TestUnivocity {
-
     public void parseCSV(String fileName) {
-        CsvParserSettings parserSettings = new CsvParserSettings();
-        parserSettings.setLineSeparatorDetectionEnabled(true);
-        RowListProcessor rowProcessor = new RowListProcessor();
+        CsvParserSettings parserSettings = new CsvParserSettings(); //bring conf settings
+        parserSettings.setLineSeparatorDetectionEnabled(true); //automatically detect line separated liens
+        RowListProcessor rowProcessor = new RowListProcessor(); //process each row
         parserSettings.setRowProcessor(rowProcessor);
-        parserSettings.setHeaderExtractionEnabled(true);
+        parserSettings.setHeaderExtractionEnabled(true); //consider the first row as headers
         CsvParser parser = new CsvParser(parserSettings);
-        parser.parse(new File(fileName));
+        parser.parse(new File(fileName)); //parse the file
 
         //String[] headers = rowProcessor.getHeaders();
-        List<String[]> rows = rowProcessor.getRows();
+        List<String[]> rows = rowProcessor.getRows(); //get the each line as a string list
         for (String[] row : rows) {
             System.out.println(Arrays.asList(row));
         }
